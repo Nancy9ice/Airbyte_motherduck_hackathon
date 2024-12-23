@@ -1,7 +1,6 @@
 import pandas as pd
 import logging
 import mysql.connector
-from db_conn import get_mysql_conn
 import pyodbc
 import time
 
@@ -71,8 +70,3 @@ def split_and_execute_queries(conn, query_file_path):
         query_results = execute_sql_with_retry(conn, query)
 
     return query_results
-
-
-# results = split_and_execute_queries(get_mysql_conn(), 'sql_query.sql')
-# results2 = results[results["exam_year"] == 2019]
-# print(results2)

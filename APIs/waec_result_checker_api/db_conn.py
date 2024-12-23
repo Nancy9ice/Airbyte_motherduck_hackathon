@@ -1,6 +1,5 @@
 import mysql.connector
 from mysql.connector import Error
-import pyodbc
 import os
 
 from dotenv import load_dotenv 
