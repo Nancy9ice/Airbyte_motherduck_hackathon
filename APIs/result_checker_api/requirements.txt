@@ -1,0 +1,7 @@
+gunicorn==23.0.0
+uvicorn==0.29.0
+mysql-connector-python==8.4.0
+pandas==2.2.2
+python-dotenv==1.0.1
+fastapi==0.115.6
+fastapi-cli==0.0.7
