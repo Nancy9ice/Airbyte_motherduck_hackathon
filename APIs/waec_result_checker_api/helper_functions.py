@@ -35,7 +35,7 @@ def execute_sql_with_retry(connection, query, retries=3, delay=2):
         try:
             # Try executing the SQL query
             return execute_sql(connection, query)
-        except (mysql.connector.Error, pyodbc.Error) as e:
+        except (mysql.connector.Error) as e:
             last_exception = e  # Save the exception
             
             if attempt < retries - 1:
@@ -48,9 +48,6 @@ def execute_sql_with_retry(connection, query, retries=3, delay=2):
                 try:
                     if isinstance(connection, mysql.connector.MySQLConnection):
                         connection.reconnect(attempts=3, delay=2)
-                    elif isinstance(connection, pyodbc.Connection):
-                        connection.close()
-                        connection = pyodbc.connect(connection.getinfo(pyodbc.SQL_CONNECTION_STRING))
                 except Exception as reconnection_error:
                     # Log a warning but don't raise the exception to allow for further retries
                     logger.warning(f"Reconnection failed on attempt {attempt + 1}/{retries}: {reconnection_error}")
