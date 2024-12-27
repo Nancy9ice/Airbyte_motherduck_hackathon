@@ -1,3 +1,6 @@
 *.env
 *.pyc
 *.__pycache__
+**/dbt_dagster_venv/
+*.logs
+*.log
