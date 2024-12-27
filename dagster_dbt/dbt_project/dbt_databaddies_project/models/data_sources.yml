@@ -1,0 +1,32 @@
+version: 2
+
+sources:
+  - name: dbt_databaddies_project
+    description: "These are RAW tables in the mysql transactional database of Rosariosis extracted by Airbyte"
+    database: Airbyte_Motherduck_Hackathon
+    schema: raw
+    tables:
+      - name: raw_attendance_day
+      - name: raw_calendar_events
+      - name: raw_courses
+      - name: raw_discipline_referrals
+      - name: raw_eligibility
+      - name: raw_eligibility_activities
+      - name: raw_grades_student_assessment_grades
+      - name: raw_marking_periods
+      - name: raw_parent
+      - name: raw_portal_polls
+      - name: raw_sat_result_checker_2019
+      - name: raw_sat_result_checker_2020
+      - name: raw_sat_result_checker_2021
+      - name: raw_school_gradelevels
+      - name: raw_schools
+      - name: raw_student_sat_reg_numbers
+      - name: raw_student_waec_grades
+      - name: raw_student_waec_reg_numbers
+      - name: raw_students
+      - name: raw_students_courses
+      - name: raw_teachers
+      - name: raw_waec_result_checker_2019
+      - name: raw_waec_result_checker_2020
+      - name: raw_waec_result_checker_2021
