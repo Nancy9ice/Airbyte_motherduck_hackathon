@@ -3,7 +3,7 @@ dbt-duckdb==1.9.1
 dagster-duckdb==0.25.6
 dagster-cloud==1.9.6
 dagster==1.9.6
-dagster-cloud-cli==1.4.0
+dagster-cloud-cli==1.9.6
 dagster-airbyte==0.25.6
 dagster-dbt==0.25.6
 pandas==2.2.3

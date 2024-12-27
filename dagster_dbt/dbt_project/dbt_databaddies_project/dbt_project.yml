@@ -31,9 +31,9 @@ clean-targets:         # directories to be removed by `dbt clean`
 # files using the `{{ config(...) }}` macro.
 models:  
   dbt_databaddies_project:
-    CORE:
+    core:
       +materialized: table
       +schema: core
-    INTERMEDIATE:
+    intermediate:
       +materialized: table
       +schema: intermediate
