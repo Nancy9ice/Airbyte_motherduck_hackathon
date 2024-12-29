@@ -1,4 +1,7 @@
 
-target/
+target/*
 dbt_packages/
 logs/
+
+# Except for manifest.json
+!target/manifest.json
