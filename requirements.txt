@@ -2,6 +2,7 @@ dbt-core==1.8.9
 dbt-duckdb==1.9.1
 dagster-duckdb==0.25.6
 dagster-cloud==1.9.6
+dagster-webserver==1.9.6
 dagster==1.9.6
 dagster-cloud-cli==1.9.6
 dagster-airbyte==0.25.6

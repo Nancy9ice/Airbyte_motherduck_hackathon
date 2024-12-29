@@ -1,0 +1,4 @@
+locations:
+  - location_name: dagster_ml_dbt
+    code_source:
+      module_name: dagster_ml_dbt.definitions

@@ -22,7 +22,6 @@ sources:
       - name: raw_school_gradelevels
       - name: raw_schools
       - name: raw_student_sat_reg_numbers
-      - name: raw_student_waec_grades
       - name: raw_student_waec_reg_numbers
       - name: raw_students
       - name: raw_students_courses
