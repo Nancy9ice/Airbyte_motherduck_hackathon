@@ -1,0 +1,26 @@
+version: 2
+
+models:
+  - name: dim_courses
+    columns:
+      - name: course_id
+        data_tests:
+          - unique
+          - not_null
+  - name: dim_students
+    columns:
+      - name: student_id
+        data_tests:
+          - unique
+          - not_null
+  - name: fact_school_grades
+    columns:
+      - name: student_grades_id
+        data_tests:
+          - unique
+          - not_null
+      - name: student_course_id
+        data_tests:
+          - relationships:
+              to: ref('stg_students_courses')
+              field: student_course_id

@@ -31,6 +31,9 @@ clean-targets:         # directories to be removed by `dbt clean`
 # files using the `{{ config(...) }}` macro.
 models:  
   dbt_databaddies_project:
+    exposures:
+      +materialized: table
+      +schema: exposures
     core:
       +materialized: table
       +schema: core
