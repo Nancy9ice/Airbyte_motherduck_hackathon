@@ -1,7 +1,7 @@
 from dagster_airbyte import build_airbyte_assets
 
 # Build Airbyte assets (this will create raw tables)
-airbyte_assets_1 = build_airbyte_assets(
+airbyte_assets = build_airbyte_assets(
     connection_id="b9e8f94e-ebba-4335-abed-c8785d3627cd",
     destination_tables=[
         "raw_attendance_day", "raw_calendar_events", "raw_courses",
@@ -15,20 +15,20 @@ airbyte_assets_1 = build_airbyte_assets(
 )
 
 
-airbyte_assets_2 = build_airbyte_assets(
-    connection_id="1c21bf15-064a-439e-bb9c-a758fbbfb481",
-    destination_tables=[
-        "raw_sat_result_checker_2019", "raw_sat_result_checker_2020", "raw_sat_result_checker_2021"
-    ],
-    asset_key_prefix=["airbyte_motherduck"],
-)
+# airbyte_assets_2 = build_airbyte_assets(
+#     connection_id="1c21bf15-064a-439e-bb9c-a758fbbfb481",
+#     destination_tables=[
+#         "raw_sat_result_checker_2019", "raw_sat_result_checker_2020", "raw_sat_result_checker_2021"
+#     ],
+#     asset_key_prefix=["airbyte_motherduck"],
+# )
 
-airbyte_assets_3 = build_airbyte_assets(
-    connection_id="63b47f56-b424-49b4-a886-961457d5765e",
-    destination_tables=[
-        "raw_waec_result_checker_2019", "raw_waec_result_checker_2020", "raw_waec_result_checker_2021"
-    ],
-    asset_key_prefix=["airbyte_motherduck"],
-)
+# airbyte_assets_3 = build_airbyte_assets(
+#     connection_id="63b47f56-b424-49b4-a886-961457d5765e",
+#     destination_tables=[
+#         "raw_waec_result_checker_2019", "raw_waec_result_checker_2020", "raw_waec_result_checker_2021"
+#     ],
+#     asset_key_prefix=["airbyte_motherduck"],
+# )
 
-airbyte_assets = airbyte_assets_1 + airbyte_assets_2 + airbyte_assets_3
+# airbyte_assets = airbyte_assets_1 + airbyte_assets_2 + airbyte_assets_3
