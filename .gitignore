@@ -4,3 +4,4 @@
 **/dbt_dagster_venv/
 *.logs
 *.log
+**/dagster_ml_dbt/dagster_ml_dbt.egg-info/

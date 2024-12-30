@@ -1,7 +1,7 @@
 # repository.py
 from dagster import Definitions, repository
-from dagster_ml_dbt.assets.airbyte_instance import airbyte_assets
-from dagster_ml_dbt.assets.motherduck_dbt import my_dbt_assets, dbt_resource
+from dagster_ml_dbt.assets.airbyte_assets import airbyte_assets
+from dagster_ml_dbt.assets.dbt_assets import my_dbt_assets, dbt_resource
 from dagster_ml_dbt.motherduck_constants import motherduck
 from dagster_ml_dbt.airbyte_constants import airbyte_instance
 from dagster_ml_dbt.jobs import airbyte_dbt_sync_job

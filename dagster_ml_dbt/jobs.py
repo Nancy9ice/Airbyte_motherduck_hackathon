@@ -2,8 +2,7 @@ from dagster import (
     define_asset_job,
     AssetSelection,
 )
-from dagster_ml_dbt.assets.motherduck_dbt import my_dbt_assets
-from dagster_ml_dbt.assets.airbyte_instance import airbyte_assets  # Import Airbyte assets if needed
+from dagster_ml_dbt.assets.dbt_assets import my_dbt_assets
 
 # Define job to run Airbyte sync and dbt build
 airbyte_dbt_sync_job = define_asset_job(

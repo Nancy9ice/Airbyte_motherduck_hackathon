@@ -1,6 +1,5 @@
 from dagster import AssetExecutionContext
 from dagster_dbt import DbtCliResource, dbt_assets
-from dagster_ml_dbt.airbyte_constants import DBT_PROJECT_DIR
 import os
 
 # Paths to dbt project
