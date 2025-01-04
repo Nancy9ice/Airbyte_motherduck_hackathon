@@ -70,6 +70,7 @@ SELECT
     END AS student_evaluation,
     waec_grades.exam_year as waec_exam_year, -- Make sure this column exists in the waec_grades table
     waec_grades.exam_number,
+    waec_grades.courses as waec_course,
     waec_grades.waec_grade,
     CAST(AVG(attendance.minutes_present) AS BIGINT) AS average_student_minutes_attendance,
     CAST(AVG(attendance.total_minutes) AS BIGINT) AS average_expected_student_attendance
@@ -124,4 +125,5 @@ GROUP BY
     waec_grades.exam_year,
     waec_grades.exam_number,
     waec_grades.waec_grade,
-    students.profile_image
+    students.profile_image,
+    waec_grades.courses

@@ -109,6 +109,8 @@ def display_table_data(schema_name, table_name):
         # Display a key icon using emoji
             st.write(f"**🔑 {df['student_id'].iloc[0]}**")
 
+    # Add Text Metrics
+
     st.markdown(
     """
     <style>
