@@ -62,6 +62,7 @@ SELECT
         WHEN teacher.full_name IS NULL THEN 'None'
         ELSE teacher.full_name
     END AS disciplinary_teacher,
+    students.profile_image,
     average_student_score,
     CASE 
         WHEN average_student_score >= 50 THEN 'Pass'
@@ -122,4 +123,5 @@ GROUP BY
     discipline.disciplinary_action_taken,
     waec_grades.exam_year,
     waec_grades.exam_number,
-    waec_grades.waec_grade
+    waec_grades.waec_grade,
+    students.profile_image

@@ -13,12 +13,14 @@
     content: 'Zacrac High School';
     display: block;
     position: absolute;
-    top: 220px; /* Adjust this value to bring the text closer to the image */
+    top: 200px; /* Adjust this value to bring the text closer to the image */
     left: 50%;
     transform: translateX(-50%); /* Center the text horizontally */
     font-size: 20px;
     font-weight: bold;
     color: black; /* Adjust this value based on desired text color */
+    text-align: center;  /* Centering the text */
+    white-space: nowrap;  /* Prevent line break */
 }
 
 /* Card Styling */

@@ -67,6 +67,7 @@ SELECT DISTINCT
         WHEN teacher.full_name IS NULL THEN 'None'
         ELSE teacher.full_name
     END AS disciplinary_teacher,
+    students.profile_image,
     sat.exam_year AS sat_exam_year,
     sat.registration_number,
     sat.sat_score,

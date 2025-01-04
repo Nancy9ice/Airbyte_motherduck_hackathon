@@ -16,7 +16,6 @@ with open('style.css') as f:
 st.sidebar.header('Dashboard Parameters')
 
 
-# @st.cache_data
 def display_table_data(schema_name, table_name, table_name1):
     """
     Establishes a connection to the database, queries the specified table within a schema,

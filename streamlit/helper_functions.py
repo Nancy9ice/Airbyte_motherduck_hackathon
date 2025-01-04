@@ -22,16 +22,6 @@ def create_connection():
     conn = duckdb.connect(database=connection_string)
     return conn
 
-# Example usage
-try:
-    conn = create_connection()
-    print("Connection established successfully.")
-    # Perform database operations here
-finally:
-    # Ensure the connection is closed after operations
-    conn.close()
-    print("Connection closed.")
-
 
 def query_table_to_df(conn, schema_name, table_name):
     """
@@ -53,7 +43,7 @@ def query_table_to_df(conn, schema_name, table_name):
     qualified_table_name = f'"{schema_name}"."{table_name}"'
 
     # Construct the SQL query
-    query = f'SELECT * FROM {qualified_table_name}'
+    query = f'SELECT * FROM {qualified_table_name} LIMIT 100000'
 
     # Execute the query and fetch results as a DataFrame
     df = conn.execute(query).df()
