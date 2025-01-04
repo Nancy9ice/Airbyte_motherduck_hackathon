@@ -22,7 +22,8 @@ SELECT
     CASE 
         WHEN student_activity_status = 'Active' THEN activity
         ELSE 'None'
-    END AS student_extracurricular_activity
+    END AS student_extracurricular_activity,
+    profile_image
 FROM {{ ref ('stg_students') }} students
 LEFT JOIN {{ ref ('stg_classes') }} classes
 ON students.class_id = classes.class_id

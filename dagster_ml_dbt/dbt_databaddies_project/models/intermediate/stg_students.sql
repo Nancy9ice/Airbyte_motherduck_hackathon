@@ -26,6 +26,7 @@ SELECT DISTINCT
     END AS health_condition,
     created_at as student_registered_at,
     STRFTIME(created_at, '%Y%m%d') AS registration_date_id,
+    profile_image,
     updated_at as student_updated_at,
     STRFTIME(updated_at, '%Y%m%d') AS updated_date_id
 FROM {{ source('dbt_databaddies_project', 'raw_students') }}
