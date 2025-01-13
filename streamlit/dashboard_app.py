@@ -6,47 +6,30 @@ import plost
 import plotly.express as px
 
 # Page setting
-st.set_page_config(layout='wide', initial_sidebar_state='expanded')
+# st.set_page_config(layout='wide', initial_sidebar_state='expanded')
 
-st.title('Students Dashboard')
+# st.title('Students Dashboard')
 
-with open('style.css') as f:
-    st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+# with open('style.css') as f:
+#     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
-st.sidebar.header('Dashboard Parameters')
+# st.sidebar.header('Dashboard Parameters')
 
-
-def display_table_data(schema_name, table_name, table_name1):
-    """
-    Establishes a connection to the database, queries the specified table within a schema,
-    and displays the data in a Streamlit app.
-    """
-    # Establish a connection to the DuckDB database
-    conn = create_connection()
-
-    try:
-        # Query the table and get the results as a DataFrame
-        df = query_table_to_df(conn, schema_name, table_name)
-        # df1 = query_table_to_df(conn, schema_name, table_name1)
-        
-        # Display the DataFrame in Streamlit
-        # st.dataframe(df)
-    except Exception as e:
-        st.error(f"An error occurred: {e}")
-    finally:
-        # Close the database connection
-        conn.close()
+def display_dashboard_app(df):
+    """Display the main dashboard app."""
 
     # Sidebar: Select student classes
     class_filter = st.sidebar.multiselect(
         'Select Student Class',
-        options=sorted(df['student_class'].unique())
+        options=sorted(df['student_class'].unique()),
+        key='dashboard_class_filter'
     )
 
     # Sidebar: Select student statuses
     status_filter = st.sidebar.multiselect(
         'Select Student Status',
-        options=sorted(df['student_status'].unique())
+        options=sorted(df['student_status'].unique()),
+        key='dashboard_status_filter'
     )
 
     # Apply filters to the DataFrame
@@ -148,7 +131,3 @@ def display_table_data(schema_name, table_name, table_name1):
     fig1.update_layout(yaxis_title=None)
     # Display the bar chart
     col7.plotly_chart(fig1, use_container_width=True)
-
-
-
-display_table_data('exposures', 'sat_performance_metrics', 'waec_performance_metrics')

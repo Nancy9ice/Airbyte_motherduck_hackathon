@@ -5,39 +5,24 @@ import pandas as pd
 import plotly.graph_objects as go
 
 # Page setting
-st.set_page_config(layout='wide', initial_sidebar_state='expanded')
+# st.set_page_config(layout='wide', initial_sidebar_state='expanded')
 
-st.title('Students Profile')
+# st.title('Student Profile')
 
-with open('style.css') as f:
-    st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+# with open('style.css') as f:
+#     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
-st.sidebar.header('Profile Parameters')
+# st.sidebar.header('Profile Parameters')
 
 
-def display_table_data(schema_name, table_name):
-    """
-    Establishes a connection to the database, queries the specified table within a schema,
-    and displays the data in a Streamlit app.
-    """
-    # Establish a connection to the database
-    conn = create_connection()
-
-    try:
-        # Query the table and get the results as a DataFrame
-        df = query_table_to_df(conn, schema_name, table_name)
-        
-    except Exception as e:
-        st.error(f"An error occurred: {e}")
-        return  # Stop further execution if there is an error
-    finally:
-        # Close the database connection
-        conn.close()
+def display_student_bio(df):
+    """Display the Student Bio app."""
 
     # Sidebar: Select student classes
     class_filter = st.sidebar.selectbox(
         'Select Student Class',
-        options=sorted(df['student_class'].dropna().unique())
+        options=sorted(df['student_class'].dropna().unique()),
+        key='bio_student_class_filter'
     )
 
     # Filter the DataFrame based on the selected class to update name options
@@ -49,7 +34,8 @@ def display_table_data(schema_name, table_name):
     # Sidebar: Select student names (filtered by the selected class)
     name_filter = st.sidebar.selectbox(
         'Select Student Name',
-        options=sorted(filtered_df['student_name'].dropna().unique())
+        options=sorted(filtered_df['student_name'].dropna().unique()),
+        key='bio_name_filter'
     )
 
     # Apply final filters to the DataFrame
@@ -62,7 +48,8 @@ def display_table_data(schema_name, table_name):
     # Sidebar: Select student class (Specific to the Attendance of the student)
     attendance_class_filter = st.sidebar.selectbox(
         'Select Student Attendance Class',
-        options=sorted(filtered_df['course_class'].dropna().unique())
+        options=sorted(filtered_df['course_class'].dropna().unique()),
+        key='bio_attendance_class_filter'
     )
 
     # Apply final filters to the DataFrame
@@ -75,30 +62,89 @@ def display_table_data(schema_name, table_name):
     if attendance_class_filter:
         df1 = df[df['course_class'] == attendance_class_filter]
 
+    if df["gender"].iloc[0] == 'Male':
+        # CSS for the banner
+        banner_style = """
+        <style>
+        .banner-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 150px; /* Adjust height as needed */
+            background-color: #6663ff; /* Light purple background */
+            border-radius: 20px 20px 20px 20px; /* Curved edges */
+            z-index: 0; /* Ensure it stays behind the content but above the page background */
+        }
+        .content-container {
+            position: relative; /* Keeps content on top */
+            z-index: 1; /* Ensures content appears above the banner */
+            padding-top: 30px; /* Add padding to prevent overlap with the banner */
+        }
+        .image-container {
+            margin-left: 200px; /* Adjust this value to shift the image to the right */
+        }
+        </style>
+        """
+
+    else:
+        # CSS for the banner
+        banner_style = """
+        <style>
+        .banner-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 150px; /* Adjust height as needed */
+            background-color: #c062e0; /* Light purple background */
+            border-radius: 20px 20px 20px 20px; /* Curved edges */
+            z-index: 0; /* Ensure it stays behind the content but above the page background */
+        }
+        .content-container {
+            position: relative; /* Keeps content on top */
+            z-index: 1; /* Ensures content appears above the banner */
+            padding-top: 30px; /* Add padding to prevent overlap with the banner */
+        }
+        .image-container {
+            margin-left: 200px; /* Adjust this value to shift the image to the right */
+        }
+        </style>
+        """
+
+    # Add the CSS to the page
+    st.markdown(banner_style, unsafe_allow_html=True)
+
+    # Add the banner div
+    st.markdown('<div class="banner-container"></div>', unsafe_allow_html=True)
 
     # Display profile image if the filtered DataFrame is not empty
     profile_image = f"./images/{df['profile_image'].iloc[0]}"
 
     # Create two columns: one for the image, one for other content
-    col1, col2, col3 = st.columns([1, 4, 2])  # Adjust the width ratio if needed
+    col1, col2, col3 = st.columns([1.5, 4, 2])
 
     # Display image in the first column with a specific width
     with col1:
+        st.markdown('<div class="image-container">', unsafe_allow_html=True)
         st.image(profile_image, use_container_width=True)  # Width will be adjusted, height will scale
+        st.markdown('</div>', unsafe_allow_html=True)
 
     # Content for col2 (two rows)
     with col2:
         # Add empty text to push text down
         with st.container():
-            st.markdown("<br>" * 1, unsafe_allow_html=True)
+            st.markdown("<br>" * 2, unsafe_allow_html=True)
 
-        # First row in col2
+        # Combine name and class with no gap
         with st.container():
-            st.write(df['student_name'].iloc[0])
-
-        # Second row in col2
-        with st.container():
-            st.write(df['student_class'].iloc[0])
+            st.markdown(
+                f"""
+                <p style="margin: 0; color: white; font-weight: bold;">{df['student_name'].iloc[0]}</p>
+                <p style="margin: 0; color: white; ">{df['student_class'].iloc[0]}</p>
+                """,
+                unsafe_allow_html=True
+            )
 
     with col3:
         # Add empty text to push text down
@@ -107,10 +153,10 @@ def display_table_data(schema_name, table_name):
 
         with st.container():
         # Display a key icon using emoji
-            st.write(f"**🔑 {df['student_id'].iloc[0]}**")
+            st.write(f"**🔑 <span style='color: white;'>{df['student_id'].iloc[0]}</span>**", unsafe_allow_html=True)
+            
 
     # Add Text Metrics
-
     st.markdown(
     """
     <style>
@@ -251,4 +297,4 @@ def display_table_data(schema_name, table_name):
 
 
 # Call the function to display data
-display_table_data('exposures', 'waec_performance_metrics')
+# display_student_bio('exposures', 'waec_performance_metrics')

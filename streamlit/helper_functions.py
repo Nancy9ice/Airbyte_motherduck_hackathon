@@ -1,6 +1,7 @@
 from dotenv import load_dotenv
 import os
 import duckdb
+import streamlit as st
 
 # Load environment variables from a .env file
 load_dotenv()
@@ -48,3 +49,21 @@ def query_table_to_df(conn, schema_name, table_name):
     # Execute the query and fetch results as a DataFrame
     df = conn.execute(query).df()
     return df
+
+
+@st.cache_data
+def fetch_data():
+    """Fetch data from Motherduck."""
+    try:
+        conn = create_connection()
+
+        # Query the table and get the results as a DataFrame
+        df = query_table_to_df(conn, 'exposures', 'waec_performance_metrics')
+        df2 = query_table_to_df(conn, 'exposures', 'sat_performance_metrics')
+    except Exception as e:
+        st.error(f"Error fetching data: {e}")
+        return pd.DataFrame()  # Return an empty DataFrame in case of error
+    finally:
+        if conn:
+            conn.close()
+    return df, df2
