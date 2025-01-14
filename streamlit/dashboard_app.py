@@ -70,6 +70,9 @@ def display_dashboard_app(df):
     # Calculate the SAT pass rate as a percentage
     sat_pass_rate = (passed_students / total_students) * 100
 
+    # Group the data by 'student_extracurricular_activity' and 'student_school_performance' and count the occurrences
+    activity_performance_counts = df.groupby(['student_activity_status', 'student_school_performance']).size().reset_index(name='count')
+
     # Create columns for layout
     col1, col2, col3, col4 = st.columns(4)
 
@@ -131,3 +134,56 @@ def display_dashboard_app(df):
     fig1.update_layout(yaxis_title=None)
     # Display the bar chart
     col7.plotly_chart(fig1, use_container_width=True)
+
+    # Create three columns with equal width
+    col8, col9 = st.columns(2)
+
+    # Create a grouped bar chart
+    fig = px.bar(
+        activity_performance_counts,
+        x='student_activity_status',
+        y='count',
+        color='student_school_performance',
+        barmode='group',
+        title='Student Performance by Extracurricular Activity',
+        labels={'student_extracurricular_activity': 'Extracurricular Activity', 'count': 'Number of Students'},
+        text='count'
+    )
+    # Update the layout for better readability
+    fig.update_layout(
+        xaxis_title=None,
+        yaxis_title='Number of Students',
+        legend_title='School Performance',
+        xaxis_tickangle=-0
+    )
+
+    # Update y-axis properties to remove gridlines and tick labels
+    fig.update_yaxes(showgrid=False, showticklabels=False)
+
+    # Update text position to place labels above the bars
+    fig.update_traces(textposition='outside')
+    # Remove y-axis title
+    fig.update_layout(yaxis_title=None)
+    # Display the bar chart
+    col8.plotly_chart(fig, use_container_width=True)
+
+
+    # Create a histogram
+    fig_hist = px.histogram(
+        df,
+        x='average_student_score',
+        nbins=20, 
+        title='Distribution of Student Academic Scores',
+        labels={'average_student_score': 'Average Student Score'},
+        opacity=0.75
+    )
+
+    # Update layout for better readability
+    fig_hist.update_layout(
+        xaxis_title='Student Scores',
+        yaxis_title='',
+        bargap=0.2
+    )
+
+    # Display the histogram 
+    col9.plotly_chart(fig_hist, use_container_width=True)

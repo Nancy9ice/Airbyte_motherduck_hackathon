@@ -71,10 +71,10 @@ SELECT DISTINCT
     sat.exam_year AS sat_exam_year,
     sat.registration_number,
     sat.sat_score,
-    -- The school's threshold for sat performance is 1200
+    -- The school's threshold for sat performance is 900
     CASE 
-        WHEN sat.sat_score >= 1200 THEN 'Pass'
-        WHEN sat.sat_score < 1200 THEN 'Fail'
+        WHEN sat.sat_score >= 900 THEN 'Pass'
+        WHEN sat.sat_score < 900 THEN 'Fail'
     END AS sat_performance
 FROM {{ ref('dim_students') }} students
 LEFT JOIN {{ ref('stg_parents') }} parents
