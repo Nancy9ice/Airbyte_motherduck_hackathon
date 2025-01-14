@@ -241,10 +241,12 @@ def display_student_performance(df, df2):
                 col2.markdown("<span style='font-size:20px; '>This student needs to be in Senior Secondary School to have external exams predictions</span>", unsafe_allow_html=True)
 
             elif student_class.startswith('Senior'):
-                col2.markdown("<span style='font-size:20px; '>Incoming Predictions</span>", unsafe_allow_html=True)
+                # Display Predicted SAT score
+                predicted_sat_score = df2['Predicted SAT Score'].iloc[0].astype(int)
+                col2.markdown(f"<span style='font-size:20px;'>Predicted SAT score: {predicted_sat_score:.0f}</span>", unsafe_allow_html=True)
 
             elif student_class.startswith('Alumni'):
-                # Display the message with the SAT score
+                # Display SAT score
                 sat_score = df2['sat_score'].iloc[0]
                 col2.markdown(f'<span style="font-size:20px;">SAT score: {sat_score}</span>', unsafe_allow_html=True)
 

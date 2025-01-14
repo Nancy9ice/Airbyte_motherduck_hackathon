@@ -2,6 +2,7 @@ from dotenv import load_dotenv
 import os
 import duckdb
 import streamlit as st
+import pandas as pd
 
 # Load environment variables from a .env file
 load_dotenv()
@@ -59,7 +60,10 @@ def fetch_data():
 
         # Query the table and get the results as a DataFrame
         df = query_table_to_df(conn, 'exposures', 'waec_performance_metrics')
-        df2 = query_table_to_df(conn, 'exposures', 'sat_performance_metrics')
+        df2a = query_table_to_df(conn, 'exposures', 'sat_performance_metrics')
+        df2b = query_table_to_df(conn, 'main', 'sat_pred_recommendations')
+
+        df2 = pd.merge(df2a, df2b, left_on='student_id', right_on='Student ID', how='left')
     except Exception as e:
         st.error(f"Error fetching data: {e}")
         return pd.DataFrame()  # Return an empty DataFrame in case of error

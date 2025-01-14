@@ -7,6 +7,7 @@ from dashboard_app import display_dashboard_app
 from student_bio import display_student_bio
 from student_performance import display_student_performance
 from helper_functions import fetch_data
+import pandas as pd
 
 
 # st.set_page_config(layout='wide', initial_sidebar_state='expanded')

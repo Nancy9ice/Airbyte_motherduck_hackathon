@@ -25,17 +25,21 @@ def display_dashboard_app(df):
         key='dashboard_class_filter'
     )
 
+    # Dynamically filter the available statuses based on the selected class
+    if class_filter:
+        filtered_df = df[df['student_class'].isin(class_filter)]
+        available_statuses = sorted(filtered_df['student_status'].unique())
+    else:
+        available_statuses = sorted(df['student_status'].unique())
+
     # Sidebar: Select student statuses
     status_filter = st.sidebar.multiselect(
         'Select Student Status',
-        options=sorted(df['student_status'].unique()),
+        options=available_statuses,
         key='dashboard_status_filter'
     )
 
     # Apply filters to the DataFrame
-    if class_filter:
-        df = df[df['student_class'].isin(class_filter)]
-
     if status_filter:
         df = df[df['student_status'].isin(status_filter)]
 
@@ -65,7 +69,7 @@ def display_dashboard_app(df):
     mean_attendance_rate = df['student_attendance_rate'].mean()
 
     # Count the number of students who passed SAT
-    passed_students = df['sat_performance'].value_counts().get('Pass', 0)
+    passed_students = df['Outcome'].value_counts().get('Pass', 0)
 
     # Calculate the SAT pass rate as a percentage
     sat_pass_rate = (passed_students / total_students) * 100
