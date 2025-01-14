@@ -5,14 +5,14 @@ import streamlit as st
 import pandas as pd
 
 # Load environment variables
-load_dotenv()
+# load_dotenv()
 
 def create_connection():
     """
     Establishes a connection to the DuckDB database.
     """
-    # Retrieve the MotherDuck token from environment variables
-    motherduck_token = os.environ.get('MOTHERDUCK_TOKEN')
+    # Retrieve the MotherDuck token from the secrets file
+    motherduck_token = st.secrets.motherduck_token
     
     if not motherduck_token:
         raise ValueError("MOTHERDUCK_TOKEN is not set in the environment variables.")
