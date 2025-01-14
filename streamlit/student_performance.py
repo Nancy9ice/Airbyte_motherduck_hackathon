@@ -3,16 +3,7 @@ from helper_functions import create_connection
 from helper_functions import query_table_to_df
 import pandas as pd
 import plotly.graph_objects as go
-
-# Page setting
-# st.set_page_config(layout='wide', initial_sidebar_state='expanded')
-
-# st.title('Students Performance')
-
-# with open('style.css') as f:
-#     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
-
-# st.sidebar.header('Profile Parameters')
+import re
 
 
 def display_student_performance(df, df2):
@@ -178,7 +169,7 @@ def display_student_performance(df, df2):
 
     if not df1.empty:
 
-            # Function to assign colors based on score
+            # Assign colors based on score
         def assign_color(score):
             if score < 50:
                 return f'rgba(255, {int(255 * (score / 50))}, 0, 1)'  # Shades of orange
@@ -225,7 +216,7 @@ def display_student_performance(df, df2):
             showlegend=True
         )
 
-        # Display the charts in the columns
+        # Display charts in the columns
         col1.plotly_chart(fig, use_container_width=True, key="left_col_chart")
     
     else:
@@ -338,6 +329,28 @@ def display_student_performance(df, df2):
                 col2.plotly_chart(fig, use_container_width=True)
 
 
+    if student_class.startswith('Senior'):
+        # Add the recommendations section
+        col3, col4 = st.columns(2)
 
-# Call the function to display data
-# display_student_performance('exposures', 'waec_performance_metrics', 'sat_performance_metrics')
+        # Subheader for the SAT recommendations section
+        col3.subheader("SAT Recommendations")
+
+        sat_recommendations = df2["Recommendation"].iloc[0]
+
+        if pd.isna(sat_recommendations):
+            sat_recommendations = ""  
+        else:
+            sat_recommendations = str(sat_recommendations)
+
+        # Strip any leading/trailing spaces from the whole string
+        sat_recommendations = sat_recommendations.strip()
+
+        # Split by '.' or '!' and remove any empty strings
+        sat_recommendations = [phrase.strip() for phrase in re.split(r'[.!]', sat_recommendations) if phrase.strip()]
+
+        # Join with newline characters
+        sat_recommendations = "\n".join([f"- {phrase}" for phrase in sat_recommendations])
+
+        # Display the recommendations in markdown
+        col3.markdown(sat_recommendations, unsafe_allow_html=True)

@@ -4,16 +4,6 @@ from helper_functions import query_table_to_df
 import pandas as pd
 import plotly.graph_objects as go
 
-# Page setting
-# st.set_page_config(layout='wide', initial_sidebar_state='expanded')
-
-# st.title('Student Profile')
-
-# with open('style.css') as f:
-#     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
-
-# st.sidebar.header('Profile Parameters')
-
 
 def display_student_bio(df):
     """Display the Student Bio app."""
@@ -287,14 +277,9 @@ def display_student_bio(df):
             showlegend=True
         )
 
-        # Display the charts in the columns
+        # Display charts in the columns
         col1.plotly_chart(fig, use_container_width=True, key="left_col_chart")
         col2.plotly_chart(fig1, use_container_width=True, key="right_col_chart")
     
     else:
         st.markdown("<span style='font-size:20px; '>This student don't have any active course</span>", unsafe_allow_html=True)
-
-
-
-# Call the function to display data
-# display_student_bio('exposures', 'waec_performance_metrics')

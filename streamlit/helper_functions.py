@@ -4,7 +4,7 @@ import duckdb
 import streamlit as st
 import pandas as pd
 
-# Load environment variables from a .env file
+# Load environment variables
 load_dotenv()
 
 def create_connection():
@@ -66,7 +66,7 @@ def fetch_data():
         df2 = pd.merge(df2a, df2b, left_on='student_id', right_on='Student ID', how='left')
     except Exception as e:
         st.error(f"Error fetching data: {e}")
-        return pd.DataFrame()  # Return an empty DataFrame in case of error
+        return pd.DataFrame()  # Return an empty DataFrame if there's error
     finally:
         if conn:
             conn.close()

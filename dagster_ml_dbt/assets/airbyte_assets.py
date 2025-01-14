@@ -1,7 +1,7 @@
 from dagster_airbyte import build_airbyte_assets
 
 
-# Build Airbyte assets (this will create raw tables)
+# Build Airbyte assets
 airbyte_assets_1 = build_airbyte_assets(
     connection_id="b9e8f94e-ebba-4335-abed-c8785d3627cd",
     destination_tables=[

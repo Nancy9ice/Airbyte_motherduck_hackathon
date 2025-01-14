@@ -10,8 +10,6 @@ from helper_functions import fetch_data
 import pandas as pd
 
 
-# st.set_page_config(layout='wide', initial_sidebar_state='expanded')
-
 with open('style.css') as f:
     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
@@ -28,7 +26,7 @@ selected = option_menu(
 
 df, df2 = fetch_data()
 
-# Call the appropriate function based on the selected menu option
+# Call function based on the selected menu option
 if selected == "Dashboard Summary":
     st.title('Dashboard Summary')
     display_dashboard_app(df2)

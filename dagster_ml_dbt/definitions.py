@@ -19,6 +19,6 @@ defs = Definitions(
             cron_schedule="@daily",  # Runs the Airbyte sync daily at 12am
         ),
     ],
-    jobs=[airbyte_dbt_sync_job],  # Include the defined jobs
+    jobs=[airbyte_dbt_sync_job],
     resources={"airbyte": airbyte_instance, "dbt": dbt_resource, "duckdb": motherduck},  # Define required resources
 )

@@ -5,16 +5,6 @@ import pandas as pd
 import plost
 import plotly.express as px
 
-# Page setting
-# st.set_page_config(layout='wide', initial_sidebar_state='expanded')
-
-# st.title('Students Dashboard')
-
-# with open('style.css') as f:
-#     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
-
-# st.sidebar.header('Dashboard Parameters')
-
 def display_dashboard_app(df):
     """Display the main dashboard app."""
 
@@ -101,7 +91,7 @@ def display_dashboard_app(df):
         hovertemplate='<b>%{label}</b>: %{value}<extra></extra>')
     # Remove legend
     fig1.update_layout(showlegend=False)
-    # Display the donut chart
+    # Display donut chart
     col5.plotly_chart(fig1, use_container_width=True)
 
 
@@ -117,7 +107,7 @@ def display_dashboard_app(df):
         hovertemplate='<b>%{label}</b>: %{value}<extra></extra>')
     # Remove legend 
     fig1.update_layout(showlegend=False)
-    # Display the donut chart
+    # Display donut chart
     col6.plotly_chart(fig1, use_container_width=True)
 
 
@@ -136,7 +126,7 @@ def display_dashboard_app(df):
     )
     # Remove y-axis title
     fig1.update_layout(yaxis_title=None)
-    # Display the bar chart
+    # Display bar chart
     col7.plotly_chart(fig1, use_container_width=True)
 
     # Create three columns with equal width
