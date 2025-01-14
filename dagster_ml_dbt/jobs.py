@@ -3,7 +3,7 @@ from dagster import (
     AssetSelection,
 )
 from dagster_ml_dbt.assets.dbt_assets import my_dbt_assets
-from assets.ml_assets import (fetch_sat_data, 
+from dagster_ml_dbt.assets.ml_assets import (fetch_sat_data, 
                             preprocess_sat_data, 
                             split_train_test, 
                             train_rf_model_asset, 
