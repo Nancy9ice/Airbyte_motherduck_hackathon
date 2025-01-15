@@ -52,7 +52,7 @@ While choosing this solution approach and the tools involved, we considered seve
 
 - Data formats: Because the raw data was already in a structured format, we chose a warehouse (not a data lake or lakehouse) to store the data.
 
-- No complex transformation involved: There were no complex transformations involved in the data processing so we chose to use dbt that is built on the basis of SQL.
+- No complex transformation involved: There were no complex data transformations techniques so we chose to use dbt that is built on the basis of SQL.
 
 ![Architectural Diagram](images/airbyte_motherduck_architectural_diagram.drawio.png)
 
