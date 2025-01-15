@@ -2,6 +2,9 @@
 
 This project is an end-to-end solution built by the Data Baddies team for the Airbyte Motherduck 2025 Hackathon comprising of [Olaminike Olaiya](https://www.linkedin.com/in/olaminike-olaiya-821b66224/), the data scientist, and [Nancy Amandi](https://www.linkedin.com/in/nancy-amandi/), the data engineer.
 
+[LINK TO DEMO VIDEO](https://drive.google.com/file/d/1jqEteth7NV3Wy1gaOBzPsG9iAcVFfNQN/view?usp=sharing)
+
+[LINK TO PROJECT INTERFACE](https://airbytemotherduckhackathon-databaddies.streamlit.app/)
 
 # Problem Statement
 

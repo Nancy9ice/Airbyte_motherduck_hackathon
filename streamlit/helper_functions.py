@@ -44,7 +44,7 @@ def query_table_to_df(conn, schema_name, table_name):
     # Construct the fully qualified table name
     qualified_table_name = f'"{schema_name}"."{table_name}"'
 
-    # Construct the SQL query
+    # Construct the SQL query. LIMIT was added due to compute limitations of Streamlit Community Hosting
     query = f'SELECT * FROM {qualified_table_name} LIMIT 500000'
 
     # Execute the query and fetch results as a DataFrame
