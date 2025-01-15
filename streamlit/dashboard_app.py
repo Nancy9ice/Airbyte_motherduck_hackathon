@@ -61,8 +61,14 @@ def display_dashboard_app(df):
     # Count the number of students who passed SAT
     passed_students = df['Outcome'].value_counts().get('Pass', 0)
 
+    # Count the number of students who passed internal exams with 55% and above
+    internal_passed_students = (df['average_student_score'] >= 55).sum()
+
     # Calculate the SAT pass rate as a percentage
     sat_pass_rate = (passed_students / total_students) * 100
+
+    # Calculate the internal exams pass rate as a percentage
+    internal_pass_rate = (internal_passed_students / total_students) * 100
 
     # Group the data by 'student_extracurricular_activity' and 'student_school_performance' and count the occurrences
     activity_performance_counts = df.groupby(['student_activity_status', 'student_school_performance']).size().reset_index(name='count')
@@ -72,9 +78,9 @@ def display_dashboard_app(df):
 
     # Display the metrics in Streamlit
     col1.metric("Total Students", total_students)
-    col2.metric("Average Attendance Rate", f"{mean_attendance_rate:.1f}%")
-    col3.metric("Predicted SAT Pass Rate", f"{sat_pass_rate:.1f}%")
-    col4.metric("Predicted WAEC Pass Rate", "None")
+    col2.metric("Average Attendance Rate", f"{mean_attendance_rate:.0f}%")
+    col3.metric("Internal Exams Pass Rate (55%)", f"{internal_pass_rate:.0f}%")
+    col4.metric("Predicted SAT Pass Rate", f"{sat_pass_rate:.1f}%")
 
     # Create three columns with equal width
     col5, col6, col7 = st.columns(3)

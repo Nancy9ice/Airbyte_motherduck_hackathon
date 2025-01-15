@@ -243,7 +243,26 @@ def display_student_performance(df, df2):
 
         with st.container():
             if student_class.startswith('Senior'):
-                col2.markdown("<span style='font-size:20px; '>Incoming Predictions</span>", unsafe_allow_html=True)
+                col2.markdown("<span style='font-size:20px; '><b><i>SAT Recommendations: </i></b></span>", unsafe_allow_html=True)
+
+                sat_recommendations = df2["Recommendation"].iloc[0]
+
+                if pd.isna(sat_recommendations):
+                    sat_recommendations = ""  
+                else:
+                    sat_recommendations = str(sat_recommendations)
+
+                # Strip any leading/trailing spaces from the whole string
+                sat_recommendations = sat_recommendations.strip()
+
+                # Split by '.' or '!' and remove any empty strings
+                sat_recommendations = [phrase.strip() for phrase in re.split(r'[.!]', sat_recommendations) if phrase.strip()]
+
+                # Join with newline characters
+                sat_recommendations = "\n".join([f"- {phrase}" for phrase in sat_recommendations])
+
+                # Display the recommendations in markdown
+                col2.markdown(sat_recommendations, unsafe_allow_html=True)
 
             elif student_class.startswith('Alumni'):
                 # Filter for courses and grades from the maximum year between 2019 and 2021
@@ -327,30 +346,3 @@ def display_student_performance(df, df2):
                 )
 
                 col2.plotly_chart(fig, use_container_width=True)
-
-
-    if student_class.startswith('Senior'):
-        # Add the recommendations section
-        col3, col4 = st.columns(2)
-
-        # Subheader for the SAT recommendations section
-        col3.subheader("SAT Recommendations")
-
-        sat_recommendations = df2["Recommendation"].iloc[0]
-
-        if pd.isna(sat_recommendations):
-            sat_recommendations = ""  
-        else:
-            sat_recommendations = str(sat_recommendations)
-
-        # Strip any leading/trailing spaces from the whole string
-        sat_recommendations = sat_recommendations.strip()
-
-        # Split by '.' or '!' and remove any empty strings
-        sat_recommendations = [phrase.strip() for phrase in re.split(r'[.!]', sat_recommendations) if phrase.strip()]
-
-        # Join with newline characters
-        sat_recommendations = "\n".join([f"- {phrase}" for phrase in sat_recommendations])
-
-        # Display the recommendations in markdown
-        col3.markdown(sat_recommendations, unsafe_allow_html=True)
