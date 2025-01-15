@@ -45,7 +45,7 @@ def query_table_to_df(conn, schema_name, table_name):
     qualified_table_name = f'"{schema_name}"."{table_name}"'
 
     # Construct the SQL query
-    query = f'SELECT * FROM {qualified_table_name} LIMIT 1000000'
+    query = f'SELECT * FROM {qualified_table_name} LIMIT 500000'
 
     # Execute the query and fetch results as a DataFrame
     df = conn.execute(query).df()
