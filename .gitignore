@@ -5,3 +5,4 @@
 *.logs
 *.log
 **/dagster_ml_dbt/dagster_ml_dbt.egg-info/
+**secrets.toml
