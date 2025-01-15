@@ -137,6 +137,12 @@ Motherduck was used as the warehouse due to the structured format of the raw dat
 
 The raw schema contains raw tables copied from the transactional database and APIs to the warehouse. The intermediate schema contains the transformed forms of each of these tables. The core schemas contain tables that were as a result of re-modeling or joining with other tables in the intermediate schema. The exposures schemas contains the two aggregate tables that were used for the machine-learning and data analysis process.
 
+**Below is the Motherduck Instance:**
+
+```sql
+ATTACH 'md:_share/Airbyte_Motherduck_Hackathon/6905c599-cdac-4252-9891-3acb2ba3c404';
+```
+
 ## Data Preparation and Modeling
 
 The tables in the Snowflake intermediate, core, and exposures schemas were built using dbt, our transformation tool. The major data preparation techniques used were:
@@ -160,7 +166,7 @@ The tables in the Snowflake intermediate, core, and exposures schemas were built
 
 ## Machine Learning
 
-When the data was ready in our Motherduck warehouse, we moved into the predictive phase of the project. We aimed to proactively predict student performance in the final nationwide exams (SAT and WAEC) by analyzing alumni's and current students' academic records. With this insight, Zacrac High School could implement targeted recommendations for current students, helping to improve future exam outcomes.
+When the data was ready in our Motherduck warehouse, we moved into the predictive phase of the project. We aimed to proactively predict student performance in the final external exams by analyzing alumni's and current students' academic records. With this insight, Zacrac High School could implement targeted recommendations for current students, helping to improve future exam outcomes.
 
 ## Reporting and Visualization
 
@@ -170,9 +176,15 @@ We developed three dashboard pages tailored specifically for class teachers to n
 
 ### Dashboard 1: Dashboard Summary
 
+![Student Dashboard Summary](images/student_dashboard_summary.png)
+
 ### Dashboard 2: Student Bio
 
+![Student Bio](images/student_bio_dashboard.png)
+
 ### Dashboard 3: Student Performance and Predictions
+
+![Student Performance Dashboard](images/student_performance_dashboard.png)
 
 ## Pipeline Orchestration
 
