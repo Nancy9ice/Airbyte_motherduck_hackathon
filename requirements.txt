@@ -1,0 +1,11 @@
+pandas==2.2.3
+numpy==1.26.4
+scikit-learn==1.5.2
+matplotlib==3.10.0
+sqlalchemy==2.0.36
+imbalanced-learn==0.13.0
+pyarrow==15.0.0
+streamlit==1.41.1
+streamlit-option-menu==0.4.0
+plost==0.2.5
+scikit-learn==1.5.2

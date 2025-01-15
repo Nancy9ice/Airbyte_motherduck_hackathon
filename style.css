@@ -1,0 +1,63 @@
+/* Logo */
+/* Adapted from Zachary Blackwood */
+[data-testid="stSidebar"] {
+    background-image: url(https://cdn.prod.website-files.com/605e01bc25f7e19a82e74788/674df90a14316a04b4706358_Motherduck%20Hackathon.png);
+    background-size: 200px;
+    background-repeat: no-repeat;
+    background-position: center 20px; /* Center horizontally and adjust vertical position */
+    position: relative;
+    padding-top: 240px; /* Adjust padding to create space for the text */
+}
+
+[data-testid="stSidebar"]::after {
+    content: 'Zacrac High School';
+    display: block;
+    position: absolute;
+    top: 200px; /* Adjust this value to bring the text closer to the image */
+    left: 50%;
+    transform: translateX(-50%); /* Center the text horizontally */
+    font-size: 20px;
+    font-weight: bold;
+    color: black; /* Adjust this value based on desired text color */
+    text-align: center;  /* Centering the text */
+    white-space: nowrap;  /* Prevent line break */
+}
+
+/* Card Styling */
+div.css-1r6slb0.e1tzin5v2, div.css-19ih76x.e1tzin5v2 {
+    background-color: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    padding: 5% 5% 5% 10%;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* Add shadow effect */
+    border-left: 4px solid purple; /* Add left thin purple border */
+}
+
+/* Additional styling for card labels */
+label.css-mkogse.e16fv1kl2 {
+    color: #36b9cc !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+}
+
+/* Move block container higher */
+div.block-container.css-18e3th9.egzxvld2 {
+    margin-top: -5em;
+}
+
+/* Hide hamburger menu and footer */
+div.css-r698ls.e8zbici2 {
+    display: none;
+}
+
+footer.css-ipbk5a.egzxvld4 {
+    display: none;
+}
+
+footer.css-12gp8ed.eknhn3m4 {
+    display: none;
+}
+
+div.vg-tooltip-element {
+    display: none;
+}
